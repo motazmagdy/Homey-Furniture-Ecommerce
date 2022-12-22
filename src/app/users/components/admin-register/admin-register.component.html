@@ -1,0 +1,58 @@
+<div
+  class="authentication-card-container"
+  fxLayout="column"
+  fxLayoutAlign="center"
+>
+  <mat-card class="authentication-card">
+    <mat-card-header>
+      <mat-card-title>Register as Admin</mat-card-title></mat-card-header
+    >
+    <mat-card-content>
+      <form
+        [formGroup]="registerForm"
+        fxLayout="column"
+        fxLayoutAlign="center stretch"
+      >
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" />
+        </mat-form-field>
+        <div *ngIf="EmailValid==false" class="text-danger">
+            <div *ngIf="EmailField!=0">
+              Must be Valid Email form
+            </div>
+          </div>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" />
+        </mat-form-field>
+        <div *ngIf="PasswordValid==false" class="text-danger">
+
+            <div *ngIf="PassLength!=0">
+            Must be 8 characters or more</div>
+          </div>
+        <mat-form-field>
+            <mat-label>Image</mat-label>
+            <input matInput formControlName="image" />
+          </mat-form-field>
+          <mat-radio-group aria-label="gender" formControlName="gender">Gender :
+            <mat-radio-button value="male" class="ms-4">Male</mat-radio-button>
+            <mat-radio-button value="female" class="ms-4">Female</mat-radio-button>
+        </mat-radio-group>
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="d-flex flex-column">
+      <button class="btn btn-primary w-50 m-auto text-center mb-3" 
+      style="padding:0.1rem 0.1rem" (click)="onSubmit()" >
+        Register
+      </button>
+      <a class="w-80 text-decoration-none m-auto" routerLink="/admins/login">
+        <span class="text-dark">Already have an account?</span> Login here.
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</div>

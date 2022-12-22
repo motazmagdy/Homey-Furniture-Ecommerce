@@ -1,0 +1,15 @@
+<div class="row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let prod of allProds">
+        <div class="card text-center">
+           <div class="card-body">
+            <h5 class="card-title fs-6 fw-semibold">{{prod.name}}</h5>
+            <img src="assets/images/{{prod.images[0]}}" style="width:60%">
+            <p class="card-text">{{prod.category}}</p>
+            <a href="#" class="btn btn-success">Add to cart </a>
+            </div> 
+            <div class="card-footer text-muted">
+                Availble only    <span class="text-danger"><strong>{{prod.number_available}} !</strong></span>
+            </div>
+        </div>
+    </div>
+</div>

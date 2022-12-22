@@ -1,0 +1,26 @@
+<!-- <p>products-details works!</p> -->
+<div class="box">
+    <div class="row">
+      <div class="col-md-5 col-sm-12">
+         <img style="width: 50%;" *ngIf="data.images" src="assets/images/{{data.images[0]}}" alt="logo">
+      </div>
+      <div class="col-md-7 col-sm-12">
+        <div class="info">
+          <ul class="list-unstyled">
+            <li><strong>Name : </strong>{{data.name}}</li>
+            <li><strong>Category :</strong>{{data.category}}</li>
+            <li><strong>Color :</strong>{{data.color}}</li>
+            <li><strong>Price :</strong>{{data.price}}</li>
+            <li><strong>Dimensions : </strong>{{data.dimensions}}</li>
+            <li><strong>Material : </strong>{{data.material}}</li>
+            <li><strong>Number of units : </strong>{{data.number_of_units}}</li>
+            <li><strong>Number of available : </strong>{{data.number_available}}</li>
+            <li><strong>Delivery within : </strong>{{data.delivery_within}}</li>
+            <li><strong>Made in : </strong>{{data.made_in}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- <app-spinner *ngIf="loading"></app-spinner> -->
+  </div>
+  
