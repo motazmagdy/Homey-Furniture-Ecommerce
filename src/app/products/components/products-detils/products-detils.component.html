@@ -1,12 +1,12 @@
 <!-- <p>products-details works!</p> -->
-<div class="box">
+<div class="box p-5">
     <div class="row">
       <div class="col-md-5 col-sm-12">
-         <img style="width: 50%;" *ngIf="data.images" src="assets/images/{{data.images[0]}}" alt="logo">
+         <img style="width: 80%;" *ngIf="data.images" src="assets/images/{{data.images[0]}}" alt="logo">
       </div>
       <div class="col-md-7 col-sm-12">
         <div class="info">
-          <ul class="list-unstyled">
+          <ul class="list-unstyled lh-lg">
             <li><strong>Name : </strong>{{data.name}}</li>
             <li><strong>Category :</strong>{{data.category}}</li>
             <li><strong>Color :</strong>{{data.color}}</li>
