@@ -1,8 +1,8 @@
 <div class="cartBox">
   <h1 class="text-danger">Shopping Cart</h1>
   <div class="headCart">
-    <p class="lead">You have <label class="text-danger">{{cartItems.length}}</label> in your cart</p>
-      <span (click)="clearcart()">clear shopping cart</span>
+    <p class="lead">You have <label class="text-danger" *ngIf="cartItems">{{cartItems.length}}</label> in your cart</p>
+    <span (click)="clearCart()">clear shopping cart</span>
   </div>
   <table class="table table-striped">
     <thead>
@@ -23,13 +23,13 @@
         <td>
           <div class="quantity" *ngIf="product.quantity">
             <button class="btn btn-dark" (click)="addAmount(index,product.productId , product.quantity)">+</button>
-            <input class="form-control"  type="number" (change)="detectChange()" [(ngModel)]="product.quantity" min="1">
+            <input class="form-control" type="number" (change)="detectChange()" [(ngModel)]="product.quantity" min="1">
             <button class="btn btn-dark" (click)="minsAmount(index,product.productId , product.quantity)">-</button>
           </div>
         </td>
         <td>{{product.price * product.quantity}} L.E</td>
         <td>
-          <button class="btn btn-danger" (click)="deleteProdut(index)">Delete</button>
+          <button class="btn btn-danger" (click)="deleteProduct(index)">Delete</button>
         </td>
       </tr>
     </tbody>
@@ -45,4 +45,5 @@
     </tfoot>
   </table>
 </div>
-<div class="alert alert success" role="alert" *ngIf="success"><strong>Well done!</strong> order is successfully send</div>
+<div class="alert alert success" role="alert" *ngIf="success"><strong>Well done!</strong> order is successfully send
+</div>

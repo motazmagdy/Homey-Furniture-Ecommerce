@@ -10,23 +10,23 @@ import { AdminLoginComponent } from './users/components/admin-login/admin-login.
 import { AdminRegisterComponent } from './users/components/admin-register/admin-register.component';
 import { ProfileViewComponent } from './users/components/profile-view/profile-view.component';
 import { AllProductsComponent } from './products/components/all-products/all-products.component';
-import { ProductsDetilsComponent } from './products/components/products-detils/products-detils.component';
+import { ProductsDetailsComponent } from './products/components/products-details/products-details.component';
 import { CartsComponent } from './carts/components/carts/carts.component';
 
 const routes: Routes = [
-    {path : '',redirectTo:'/home',pathMatch:'full'},
-    {path : 'home', component:HomeComponent},
-    {path : 'about',component:AboutComponent},
-    {path : 'admins/login',component:AdminLoginComponent},
-    {path : 'admins/register',component:AdminRegisterComponent},
-    {path : 'users/login',component:LoginPageComponent},
-    {path : 'users/register',component:RegisterPageComponent},
-    {path : 'users/profile',component:ProfileViewComponent,canActivate:[HelpersGuard]},
-    {path : 'products/all',component:AllProductsComponent,canActivate:[HelpersGuard]},
-    {path : 'products/:id',component:ProductsDetilsComponent,canActivate:[HelpersGuard]},
-    {path : 'users/carts',component:CartsComponent,canActivate:[HelpersGuard]},
-    {path : '**',component:ErrorPageComponent}
-  ];
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'admins/login', component: AdminLoginComponent },
+  { path: 'admins/register', component: AdminRegisterComponent },
+  { path: 'users/login', component: LoginPageComponent },
+  { path: 'users/register', component: RegisterPageComponent },
+  { path: 'users/profile', component: ProfileViewComponent, canActivate: [HelpersGuard] },
+  { path: 'products/all', component: AllProductsComponent, canActivate: [HelpersGuard] },
+  { path: 'products/:id', component: ProductsDetailsComponent, canActivate: [HelpersGuard] },
+  { path: 'users/carts', component: CartsComponent, canActivate: [HelpersGuard] },
+  { path: '**', component: ErrorPageComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

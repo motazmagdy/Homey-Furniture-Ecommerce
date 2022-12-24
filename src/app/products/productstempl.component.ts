@@ -6,21 +6,21 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-products',
   templateUrl: './productstempl.component.html',
-  styleUrls: ['./productstempl.component.css']
+  styleUrls: []
 })
 export class ProductsComponent implements OnInit {
   allProds: any = []
 
-  constructor(private homeServ : HomeService , private _router : Router) { }
+  constructor(private homeServ: HomeService, private _router: Router) { }
 
 
   ngOnInit(): void {
     this.homeServ.getAllProducts().subscribe({
       next: (v) => this.allProds = v,
       error: (e) => {
-        if ( e instanceof HttpErrorResponse){
-          if(e.status === 401){
-              this._router.navigate(['./login'])
+        if (e instanceof HttpErrorResponse) {
+          if (e.status === 401) {
+            this._router.navigate(['./login'])
           }
         }
       },

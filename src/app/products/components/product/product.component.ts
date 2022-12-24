@@ -7,22 +7,22 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   ]
 })
 export class ProductComponent implements OnInit {
-  @Input() data:any ={}
-  @Output() item =new EventEmitter()
-  addButton:boolean = false;
-  amount:number = 0;
+  @Input() data: any = {}
+  @Output() item = new EventEmitter()
+  addButton: boolean = false;
+  amount: number = 0;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-  add(){
+  add() {
     this.item.emit({
       //  userId:localStorage.getItem('user'),
-       productId:this.data._id,
-        quantity:this.amount
-     
-      })
+      productId: this.data._id,
+      quantity: this.amount
+
+    })
   }
 
 }
