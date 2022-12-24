@@ -7,6 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AppComponent } from '../app.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { SelectComponent } from './components/select/select.component';
 
 
 
@@ -16,15 +17,17 @@ import { AppRoutingModule } from '../app-routing.module';
     AboutComponent,
     ErrorPageComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SelectComponent
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
   ],
-  exports:[
+  exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SelectComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,10 @@
+<label for="" class="my-1">{{title}}</label>
+<select class="form-control" (change)="filterBy($event)">
+  <option value="all" selected *ngIf="all=== true; else falseBlock">All</option>
+  <ng-template #falseBlock>
+    <option value="select-one" selected>Select Category</option>
+  </ng-template>
+  <option [selected]="option === selectedOption" value="{{option}}" *ngFor="let option of data">{{option.replace('-','
+    ')}}
+  </option>
+</select>
