@@ -1,0 +1,211 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-12 w-25 m-auto">
+      <button type="submit" class="btn btn-success btn-lg mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+        (click)="form.reset()">Add New Product</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 m-auto mx-md-0 mt-3 mb-4 w-25">
+      <app-select [data]="categories" [title]="'Filter by Category'"
+        (selectedData)="filterByCategory($event)"></app-select>
+    </div>
+  </div>
+  <div class="row w-100 d-flex justify-content-between">
+    <div class="col-12 col-sm-6 col-lg-4 w-auto m-auto m-md-0" *ngFor="let item of products">
+      <div class="card-body mb-4" style="width: 18rem;">
+        <div class="card text-center p-2 pb-4" style="width: 20rem;height: 520px;">
+          <app-product [data]="item"></app-product>
+
+          <div class="mt-4 d-flex justify-content-center w-100">
+            <button type="submit" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+              (click)="updateProduct(item);productToUpdateId = item._id">Update</button>
+            <button type="submit" class="btn btn-danger mb-2 ms-3" data-bs-toggle="modal"
+              data-bs-target="#exampleModal3" (click)="productToDeleteId = item._id">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- #region Add Product Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog h-100 d-flex align-items-center" style="max-width: 85%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Add New Product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="row mb-4">
+            <div class="col-3">
+              <label for="" class="my-1">Title</label>
+              <input type="text" formControlName="name" class="form-control" placeholder="title">
+            </div>
+            <div class="col-3">
+              <app-select [data]="categories" [title]="'Category'" (selectedData)="getSelectedCategory($event)"
+                [all]="false"></app-select>
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Price</label>
+              <input type="number" formControlName="price" class="form-control" placeholder="price">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Color</label>
+              <input type="text" formControlName="color" class="form-control" placeholder="color">
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-3">
+              <label for="" class="my-1">Dimensions</label>
+              <input type="text" formControlName="dimensions" class="form-control" placeholder="dimensions">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Material</label>
+              <input type="text" formControlName="material" class="form-control" placeholder="material">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Num of Units</label>
+              <input type="number" formControlName="number_of_units" class="form-control" placeholder="number_of_units">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Number Available</label>
+              <input type="number" formControlName="number_available" class="form-control"
+                placeholder="number available">
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-3">
+              <label for="" class="my-1">Delivery within</label>
+              <input type="text" formControlName="delivery_within" class="form-control" placeholder="delivery within">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Made in</label>
+              <input type="text" formControlName="made_in" class="form-control" placeholder="made in">
+            </div>
+            <div class="col-6">
+              <label for="" class="my-1 d-block">Images</label>
+              <input type="file" class="form-control d-block w-50" multiple (change)="selectMultipleFiles($event)">
+              <!-- <button type="submit" class="form-control d-inline-block btn btn-secondary" style="width: 30%;"
+                  (click)="onMultipleFilesUpload()">click to upload</button> -->
+              <img *ngFor="let image of form.value.images" class="rounded mt-2 me-2" style="width: 120px;"
+                src="http://localhost:3006/uploads/HomeyFurniture_{{image}}" alt="" id="img">
+            </div>
+          </div>
+
+          <div class="modal-footer mr-auto">
+            <!-- [disabled]="!form.valid" -->
+            <button type="submit" class="btn btn-success mb-2" (click)="addProduct()">Add
+              Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #endregion Add Product Modal -->
+
+<!-- Update Product Modal -->
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog h-100 d-flex align-items-center" style="max-width: 85%;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form">
+          <div class="row mb-4">
+            <div class="col-3">
+              <label for="" class="my-1">Title</label>
+              <input type="text" formControlName="name" class="form-control" placeholder="title">
+            </div>
+            <div class="col-3">
+              <app-select [data]="categories" [title]="'Category'" (selectedData)="getSelectedCategory($event)"
+                [all]="false" [selectedOption]="form.value.category"></app-select>
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Price</label>
+              <input type="number" formControlName="price" class="form-control" placeholder="price">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Color</label>
+              <input type="text" formControlName="color" class="form-control" placeholder="color">
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-3">
+              <label for="" class="my-1">Dimensions</label>
+              <input type="text" formControlName="dimensions" class="form-control" placeholder="dimensions">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Material</label>
+              <input type="text" formControlName="material" class="form-control" placeholder="material">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Number of Units</label>
+              <input type="number" formControlName="number_of_units" class="form-control" placeholder="number_of_units">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Number Available</label>
+              <input type="number" formControlName="number_available" class="form-control"
+                placeholder="number_available">
+            </div>
+          </div>
+
+          <div class="row mb-4">
+            <div class="col-3">
+              <label for="" class="my-1">Delivery within</label>
+              <input type="text" formControlName="delivery_within" class="form-control" placeholder="delivery_within">
+            </div>
+            <div class="col-3">
+              <label for="" class="my-1">Made in</label>
+              <input type="text" formControlName="made_in" class="form-control" placeholder="made_in">
+            </div>
+            <div class="col-6">
+              <label for="" class="my-1 d-block">Images</label>
+              <input type="file" class="form-control d-block w-50" multiple (change)="selectMultipleFiles($event)">
+              <!-- <button type="submit" class="form-control d-inline-block btn btn-secondary" style="width: 30%;"
+                  (click)="onMultipleFilesUpload()">click to upload</button> -->
+              <img *ngFor="let image of form.value.images" class="rounded mt-2 me-2" style="width: 120px;"
+                src="http://localhost:3006/uploads/HomeyFurniture_{{image}}" alt="" id="img">
+            </div>
+          </div>
+
+          <div class="modal-footer mr-auto">
+            <!-- [disabled]="!form.valid" -->
+            <button type="submit" class="btn btn-warning mb-2" (click)="confirmUpdateProduct()">Update
+              Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Delete Product Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel3">Delete Product</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="fs-5 text-center">Are you sure you want to delete this product.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+        <button type="button" class="btn btn-danger" (click)="deleteProduct();$event.stopPropagation()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
