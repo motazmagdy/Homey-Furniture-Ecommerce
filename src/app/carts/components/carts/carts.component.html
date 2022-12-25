@@ -1,4 +1,4 @@
-<div class="cartBox">
+<div class="cartBox" *ngIf="!loading">
   <h1 class="text-danger">Shopping Cart</h1>
   <div class="headCart">
     <p class="lead">You have <label class="text-danger" *ngIf="cartItems">{{cartItems.length}}</label> in your cart</p>
@@ -45,5 +45,9 @@
     </tfoot>
   </table>
 </div>
+  <div class="text-center w-100" *ngIf="loading">
+    <app-spinner></app-spinner>
+  </div>
+
 <div class="alert alert success" role="alert" *ngIf="success"><strong>Well done!</strong> order is successfully send
 </div>

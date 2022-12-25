@@ -1,4 +1,4 @@
-<div class="container pt-2">
+<div class="container pt-2" *ngIf="!loading">
     <div class="mt-1 row g-0 pt-5" *ngIf="promotedProds">
         <h1 class="fw-semibold">Promoted products </h1>
         <div class="col-md-5 col-lg-3 ms-4 mt-4" style="width:30%" *ngFor="let promP of promotedProds" >
@@ -9,12 +9,16 @@
                     <div class="d-flex justify-content-between mt-5 mb-3">
                         <span class="mt-2"><i class="fw-semibold fs-5">{{promP.price}} </i>L.E </span>
                         <a routerLink="/products/all" class="btn btn-primary">Shop now</a>
-                    </div> 
-                </div> 
+                    </div>
+                </div>
                 <div class="card-footer text-muted">
                         Availble only <span class="text-danger"><strong>{{promP.number_available}} !</strong></span>
                 </div>
             </div>
         </div>
     </div>
-</div>
+  </div>
+    <div class="text-center w-100" *ngIf="loading">
+      <app-spinner></app-spinner>
+    </div>
+

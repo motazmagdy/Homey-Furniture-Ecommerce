@@ -19,30 +19,33 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
+import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
-  declarations: [
-    LoginPageComponent,
-    RegisterPageComponent,
-    AdminLoginComponent,
-    AdminRegisterComponent,
-    ProfileViewComponent
-  ],
-  imports: [
-    CommonModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatCardModule,
-    MatInputModule,
-    MatRadioModule,
-    MatTabsModule,
-    BrowserAnimationsModule,
-    ReactiveFormsModule,
-    AppRoutingModule
-  ],providers :[
-    HelpersGuard,
-    {provide:HTTP_INTERCEPTORS , useClass:TokenInterceptor, multi:true}
-  ]
+    declarations: [
+        LoginPageComponent,
+        RegisterPageComponent,
+        AdminLoginComponent,
+        AdminRegisterComponent,
+        ProfileViewComponent
+    ],
+    providers: [
+        HelpersGuard,
+        { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+    ],
+    imports: [
+        CommonModule,
+        FlexLayoutModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatCardModule,
+        MatInputModule,
+        MatRadioModule,
+        MatTabsModule,
+        BrowserAnimationsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        SharedModule
+    ]
 })
 export class UsersModule { }

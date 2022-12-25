@@ -22,6 +22,7 @@ export class AllProductsComponent implements OnInit {
   ];
   cartProduct: any[] = []
   body2: any;
+  loading:boolean = false
 
   constructor(private productsService: ProductsService) { }
 
@@ -30,11 +31,15 @@ export class AllProductsComponent implements OnInit {
   }
 
   getAllProducts() {
+    this.loading = true
     this.productsService.getAllProducts().subscribe({
       next: (res: any) => {
         this.products = res
+        this.loading = false
       },
-      error: (err: { message: any; }) => { alert(err.message) }
+      error: (err: { message: any; }) => {
+        this.loading = false
+        alert(err.message) }
     })
 
   }
@@ -46,11 +51,15 @@ export class AllProductsComponent implements OnInit {
   }
 
   getProductsCategory(keyword: string) {
+    this.loading = true
     this.productsService.getProductsByCategory(keyword).subscribe({
       next: (res: any) => {
         this.products = res
+        this.loading = false
       },
-      error: (err: { message: any }) => { alert(err.message) }
+      error: (err: { message: any }) => {
+        this.loading = false
+        alert(err.message) }
     })
   }
   //#endregion filter by category
@@ -59,10 +68,14 @@ export class AllProductsComponent implements OnInit {
   // addToCart(event:any){
   addToCart(orderData: object) {
     console.log(orderData);
+    this.loading = true
     this.productsService.addingToCart(orderData).subscribe(
       {
-        next: (data) => { console.log(data) },
+        next: (data) => {
+          this.loading = false
+          console.log(data) },
         error: (err) => {
+          this.loading = false
           console.log(err);
         }
       }

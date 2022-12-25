@@ -10,6 +10,7 @@ import { CartsService } from '../../services/carts.service';
 export class CartsComponent implements OnInit {
   products: any
   quantity: any
+  loading:boolean = false
   constructor(private service: CartsService) { }
   cartProduct: any[] = []
   items: any
@@ -30,9 +31,11 @@ export class CartsComponent implements OnInit {
   // }
   getCartProducts() {
     console.log("hhhh");
+    this.loading = true
     this.service.getAllProductsInCart().subscribe(
       {
         next: (data3: any) => {
+          this.loading = false
           console.log(data3)
           this.items = data3
           this.cartItems = data3.items
@@ -42,6 +45,7 @@ export class CartsComponent implements OnInit {
 
         },
         error: (err: any) => {
+          this.loading = false
           console.log(err);
         }
 
@@ -55,7 +59,7 @@ export class CartsComponent implements OnInit {
 
   addAmount(index: number, productId: any, quantity: any) {
 
-
+    this.loading = true
     quantity = ++this.cartItems[index].quantity
     var updatedQuantity = { productId, quantity }
     //  console.log(this.cartItems[index].quantity);
@@ -64,11 +68,15 @@ export class CartsComponent implements OnInit {
     this.service.modifyOrder(updatedQuantity).subscribe(
       {
         next: (data: any) => {
+          this.loading = false
+
           console.log(data)
           this.totalBill = data.bill
         },
 
-        error: (err: any) => { console.log(err) }
+        error: (err: any) => {
+          this.loading = false
+          console.log(err) }
 
       }
     )
@@ -77,6 +85,7 @@ export class CartsComponent implements OnInit {
   }
 
   minsAmount(index: number, productId: any, quantity: any) {
+    this.loading = true
     quantity = --this.cartItems[index].quantity
     var updatedQuantity = { productId, quantity }
     // console.log(this.cartItems[index].quantity);
@@ -84,17 +93,17 @@ export class CartsComponent implements OnInit {
     this.service.modifyOrder(updatedQuantity).subscribe(
       {
         next: (data: any) => {
+          this.loading = false
           console.log(data)
           this.totalBill = data.bill
         },
 
-        error: (err: any) => { console.log(err) }
-
+        error: (err: any) => {
+          this.loading = false
+          console.log(err) }
       }
-
     )
     this.getCartTotal()
-
   }
 
 
@@ -106,6 +115,7 @@ export class CartsComponent implements OnInit {
 
 
   deleteProduct(index: number) {
+    this.loading = true
     var productId = this.cartItems[index].productId
     console.log(productId);
 
@@ -114,15 +124,18 @@ export class CartsComponent implements OnInit {
 
     var con = confirm("Are you sure????");
     if (con) {
+
       this.service.deleteProductFromCart(productId).subscribe(
         {
           next: (data: any) => {
+            this.loading = false
             console.log(data)
             this.totalBill = data.bill
           },
 
-          error: (err: any) => { console.log(err) }
-
+          error: (err: any) => {
+            this.loading = false
+            console.log(err) }
         }
       )
       alert("Deleted")

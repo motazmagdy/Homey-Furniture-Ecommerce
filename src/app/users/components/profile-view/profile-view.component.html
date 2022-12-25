@@ -1,9 +1,9 @@
- <div class="m-5"><h1>Profile</h1>
-        <mat-tab-group> 
-            
+ <div class="m-5" ><h1>Profile</h1>
+        <mat-tab-group>
+
               <mat-tab label="Info">
-                <div class="container">
-                    <div class="row g-0" *ngIf="user">
+                <div class="container"  *ngIf="!loading">
+                    <div class="row g-0" *ngIf="user !loading">
                         <div class="col-lg-5 col-md-6 col-sm-12 mt-5" style="height:25rem">
                             <img src="/assets/profile/{{user.image}}.jpg" class="rounded" style="max-width:60% ;" alt="profile image">
                         </div>
@@ -45,13 +45,13 @@
                                             Must be Valid Email form
                                           </div>
                                         </div>
-                                        
+
                                       <mat-form-field>
                                           <mat-label>Password</mat-label>
                                           <input matInput type="password" formControlName="password" />
                                         </mat-form-field>
                                         <div *ngIf="PasswordValid==false" class="text-danger">
-                                
+
                                           <div *ngIf="PassLength!=0">
                                           Must be 8 characters or more</div>
                                         </div>
@@ -66,13 +66,13 @@
                                   </form>
                               </mat-card-content>
                               <mat-card-actions class="d-flex flex-column">
-                                  <button class="btn btn-success w-50 m-auto text-center mb-3" 
+                                  <button class="btn btn-success w-50 m-auto text-center mb-3"
                                   style="padding:0.1rem 0.1rem" (click)="onSubmit()" >
                                     Update
                                   </button>
                                 </mat-card-actions>
                           </mat-card>
-                         
+
                       </div>
 
                   </div>
@@ -80,4 +80,7 @@
             </mat-tab>
             <mat-tab label="Orders">  </mat-tab>
           </mat-tab-group>
+    </div>
+    <div class="text-center w-100" *ngIf="loading">
+      <app-spinner></app-spinner>
     </div>

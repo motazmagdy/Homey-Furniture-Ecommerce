@@ -10,15 +10,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RegisterPageComponent implements OnInit {
   public registerForm!: FormGroup;
-
-
-
-
+  loading:boolean=false
   constructor(private authenticationService: AuthenticationService ,private _router:Router ,public myActivated:ActivatedRoute) {
 
-    
+
   }
-  
+
   ngOnInit() {
     this.registerForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -34,6 +31,7 @@ export class RegisterPageComponent implements OnInit {
      ||!this.registerForm.controls['password'].valid||this.registerForm.get('image')!.value==0){
         alert("Invalid data Can't Be Registered , check the Fields and try again")
     }else{
+      this.loading=true
     this.authenticationService.register(
       this.registerForm.get('name')!.value,
       this.registerForm.get('email')!.value,
@@ -42,13 +40,17 @@ export class RegisterPageComponent implements OnInit {
       this.registerForm.get('gender')!.value
       ).subscribe(
         {
-          next: (res:any) =>{ 
+          next: (res:any) =>{
+            this.loading=false
             console.log(res),
             localStorage.setItem('token',res.token)
             this._router.navigate(['/products/all']);
         },
-        error: (e) => console.error(e)
-    }
+        error: (e) =>{
+          this.loading=false
+          console.error(e)
+        }
+        }
     )}
   }
   get EmailValid(){

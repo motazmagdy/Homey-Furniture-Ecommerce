@@ -10,6 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class AdminLoginComponent implements OnInit {
   public loginForm!: FormGroup;
+  loading:boolean=false
 
   constructor(private authenticationService: AuthenticationService , private _router:Router) {}
 
@@ -23,16 +24,19 @@ export class AdminLoginComponent implements OnInit {
     if(!this.loginForm.controls['email'].valid){
       alert("Invalid data , check the Fields and try again")
   }else{
+    this.loading=true
     this.authenticationService.loginAdmin(
       this.loginForm.get('email')!.value,
       this.loginForm!.get('password')!.value)
       .subscribe({
-        next: (res:any) => { 
+        next: (res:any) => {
+          this.loading=false
           console.log(res.status),
           localStorage.setItem('token',res.token),
           this._router.navigate(['/products/all']);
         },
         error: (e) => {
+          this.loading=false
           let eStat= JSON.stringify(e.status)
           alert(`Wrong email or password , check the fields and try again . Error status ${eStat}`)
           console.error(e);
