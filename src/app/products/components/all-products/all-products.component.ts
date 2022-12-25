@@ -62,9 +62,7 @@ export class AllProductsComponent implements OnInit {
     this.productsService.addingToCart(orderData).subscribe(
       {
         next: (data) => { console.log(data) },
-        error: (err) => {
-          console.log(err);
-        }
+        error: (err) => { console.log(err); }
       }
     )
   }
