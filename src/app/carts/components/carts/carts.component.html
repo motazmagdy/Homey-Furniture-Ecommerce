@@ -3,18 +3,25 @@
     <div class="col-10 text-center">
       <h1 class="text-danger fs-2 fw-bold">Shopping Cart</h1>
       <div class="headCart">
-        <p class="lead">You have <label class="text-danger" *ngIf="cartItems">{{cartItems.length}}</label> in your cart
+        <p class="lead" *ngIf="cartItems; else falseBlock">
+          You have <label class="text-danger">{{cartItems.length}}</label> in your cart
         </p>
+        <ng-template #falseBlock>
+          <p class="lead mt-5">
+            There is no items in your cart
+            <a routerLink="/products/all" style="text-decoration: underline;cursor: pointer;">Go to Shopping</a>
+          </p>
+        </ng-template>
       </div>
     </div>
-    <div class="col-2 d-flex align-items-center">
+    <div class="col-2 d-flex align-items-center" *ngIf="cartItems">
       <span class="px-4 py-3 fs-6" style="border: 2px solid #dc3545;border-radius: 7px;" (click)="clearCart()">Clear
         All Cart <span class="text-danger fs-5">!</span></span>
     </div>
   </div>
   <div class="row mt-4">
     <div class="col">
-      <table class="table table-striped">
+      <table class="table table-striped" *ngIf="cartItems">
         <thead>
           <tr>
             <th></th>
