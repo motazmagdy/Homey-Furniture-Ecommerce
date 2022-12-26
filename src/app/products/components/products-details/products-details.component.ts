@@ -12,6 +12,9 @@ export class ProductsDetailsComponent implements OnInit {
   id: any;
   data: any = {};
 
+  loading : boolean= false
+
+
   addButton: boolean = false;
   amount: number = 0;
 
@@ -24,7 +27,9 @@ export class ProductsDetailsComponent implements OnInit {
   }
 
   getProduct() {
+    this.loading = true
     this.productsService.getProductById(this.id).subscribe(res => {
+      this.loading = false
       this.data = res
       console.log(this.data)
     })

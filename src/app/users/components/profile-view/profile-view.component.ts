@@ -12,8 +12,9 @@ export class ProfileViewComponent implements OnInit {
   public user :any
   public updateForm! : FormGroup;
   public profileId :any
+  loading:boolean = false
 
-  constructor(private _router:Router,private _profileService : ProfileServiceService ) { 
+  constructor(private _router:Router,private _profileService : ProfileServiceService ) {
 
   }
 
@@ -56,6 +57,7 @@ onSubmit(){
      ||!this.updateForm.controls['password'].valid||this.updateForm.get('image')!.value==0){
         alert("Invalid data Can't Be Registered , check the Fields and try again")
     }else{
+      this.loading=true
     this._profileService.updateProfileInfo(
       this.profileId,
       this.updateForm.get('name')!.value,
@@ -65,13 +67,17 @@ onSubmit(){
       this.updateForm.get('gender')!.value
       ).subscribe(
         {
-          next: (res:any) =>{ 
+          next: (res:any) =>{
+            this.loading=false
             console.log(res),
             localStorage.setItem('token',res.token)
             this._router.navigate(['/products/all']);
         },
-        error: (e) => console.error(e)
-    }
+        error: (e) => {
+          this.loading=false
+          console.error(e)
+         }
+     }
     )}
 }
 }

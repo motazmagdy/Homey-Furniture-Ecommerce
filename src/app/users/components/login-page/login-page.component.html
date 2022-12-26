@@ -2,6 +2,7 @@
   class="authentication-card-container"
   fxLayout="column"
   fxLayoutAlign="center"
+  *ngIf="!loading"
 >
   <mat-card class="authentication-card">
     <mat-card-header> <mat-card-title>Login</mat-card-title></mat-card-header>
@@ -27,10 +28,10 @@
       </form>
     </mat-card-content>
     <mat-card-actions class="d-flex flex-column">
-      <button class="btn btn-primary w-50 m-auto text-center mb-3" 
+      <button class="btn btn-primary w-50 m-auto text-center mb-3"
       style="padding:0.1rem 0.1rem" (click)="onSubmit()">
         Login
-     </button> 
+     </button>
       <div class="w-80 text-decoration-none m-auto">
         <span class="text-dark">Don't have an account?</span>
         <a class="text-decoration-none" routerLink="/users/register" routerLinkActive="active">
@@ -45,4 +46,7 @@
       </div>
     </mat-card-actions>
   </mat-card>
+</div>
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
 </div>
