@@ -1,29 +1,8 @@
-<<<<<<< HEAD
- <div class="m-5" ><h1>Profile</h1>
-        <mat-tab-group>
-
-              <mat-tab label="Info">
-                <div class="container"  *ngIf="!loading">
-                    <div class="row g-0" *ngIf="user !loading">
-                        <div class="col-lg-5 col-md-6 col-sm-12 mt-5" style="height:25rem">
-                            <img src="/assets/profile/{{user.image}}.jpg" class="rounded" style="max-width:60% ;" alt="profile image">
-                        </div>
-                        <div class="col-lg-4 mt-5" *ngIf="user">
-                            <div class="my-2"><b class="fw-3">Name :</b>  {{user.name}}</div>
-                            <div class="my-2"><b class="fw-3">Email address :</b>  {{user.email}}</div>
-                            <div class="my-2"><b class="fw-3">Gender :</b>  {{user.gender}}</div>
-                            <div class="my-2"><b class="fw-3">Image name:</b>  {{user.image}}</div>
-                            <div class="my-2"><b class="fw-3">Member since :</b>  {{user.createdAt}}</div>
-                            <div class="my-2"><b class="fw-3">Last update since :</b>  {{user.updatedAt}}</div>
-                        </div>
-=======
 <div class="m-5">
   <h1>Profile</h1>
   <mat-tab-group>
->>>>>>> b270bf5108966ce4b686e208885e37ce133ca33a
-
     <mat-tab label="Info">
-      <div class="container">
+      <div class="container" *ngIf="!loading">
         <div class="row g-0" *ngIf="user">
           <div class="col-lg-5 col-md-6 col-sm-12 mt-5" style="height:25rem">
             <img src="http://localhost:3006/uploads/HomeyFurniture_{{user.image}}.jpg" class="rounded"
@@ -67,75 +46,6 @@
                     <div *ngIf="EmailField!=0">
                       Must be Valid Email form
                     </div>
-<<<<<<< HEAD
-                </div>
-            </mat-tab>
-            <mat-tab label="Edit">
-              <div class="container">
-                  <div class="row g-0"  *ngIf="user">
-                      <div class="col-lg-5 col-md-6 col-sm-12 mt-5" style="height:25rem;">
-                          <img src="/assets/profile/{{user.image}}.jpg" class="rounded" style="max-width:60%;margin:2rem 0;" alt="profile image">
-                      </div>
-                      <div class="col-lg-5 mt-5">
-                          <mat-card style="margin:2rem 0;">
-                              <mat-card-header class="my-3" >
-                                  <mat-card-title class="m-auto" >Edit profile info</mat-card-title>
-                              </mat-card-header>
-                              <mat-card-content>
-                                  <form [formGroup]="updateForm" fxLayout="column" fxLayoutAlign="center stretch">
-                                      <mat-form-field>
-                                          <mat-label>Name</mat-label>
-                                          <input formControlName="name" type="text" matInput/>
-                                       </mat-form-field>
-                                      <mat-form-field>
-                                          <mat-label>Email</mat-label>
-                                          <input matInput type="email" formControlName="email" />
-                                        </mat-form-field>
-                                        <div *ngIf="EmailValid==false" class="text-danger">
-                                          <div *ngIf="EmailField!=0">
-                                            Must be Valid Email form
-                                          </div>
-                                        </div>
-
-                                      <mat-form-field>
-                                          <mat-label>Password</mat-label>
-                                          <input matInput type="password" formControlName="password" />
-                                        </mat-form-field>
-                                        <div *ngIf="PasswordValid==false" class="text-danger">
-
-                                          <div *ngIf="PassLength!=0">
-                                          Must be 8 characters or more</div>
-                                        </div>
-                                      <mat-form-field>
-                                            <mat-label>Image</mat-label>
-                                            <input matInput formControlName="image" />
-                                          </mat-form-field>
-                                      <mat-radio-group aria-label="gender" formControlName="gender">Gender :
-                                              <mat-radio-button value="male" class="ms-4">Male</mat-radio-button>
-                                              <mat-radio-button value="female" class="ms-4">Female</mat-radio-button>
-                                          </mat-radio-group>
-                                  </form>
-                              </mat-card-content>
-                              <mat-card-actions class="d-flex flex-column">
-                                  <button class="btn btn-success w-50 m-auto text-center mb-3"
-                                  style="padding:0.1rem 0.1rem" (click)="onSubmit()" >
-                                    Update
-                                  </button>
-                                </mat-card-actions>
-                          </mat-card>
-
-                      </div>
-
-                  </div>
-              </div>
-            </mat-tab>
-            <mat-tab label="Orders">  </mat-tab>
-          </mat-tab-group>
-    </div>
-    <div class="text-center w-100" *ngIf="loading">
-      <app-spinner></app-spinner>
-    </div>
-=======
                   </div>
 
                   <mat-form-field>
@@ -173,4 +83,6 @@
     <mat-tab label="Orders"> </mat-tab>
   </mat-tab-group>
 </div>
->>>>>>> b270bf5108966ce4b686e208885e37ce133ca33a
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
