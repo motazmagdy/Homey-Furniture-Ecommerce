@@ -71,7 +71,6 @@ export class AllProductsComponent implements OnInit {
     this.loading = true
     this.productsService.addingToCart(orderData).subscribe(
       {
-<<<<<<< HEAD
         next: (data) => {
           this.loading = false
           console.log(data) },
@@ -79,10 +78,6 @@ export class AllProductsComponent implements OnInit {
           this.loading = false
           console.log(err);
         }
-=======
-        next: (data) => { console.log(data) },
-        error: (err) => { console.log(err); }
->>>>>>> b270bf5108966ce4b686e208885e37ce133ca33a
       }
     )
   }

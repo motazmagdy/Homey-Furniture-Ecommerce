@@ -11,16 +11,14 @@ import { ProductsService } from '../../services/products.service';
 export class ProductsDetailsComponent implements OnInit {
   id: any;
   data: any = {};
-<<<<<<< HEAD
+
   loading : boolean= false
-  constructor(private route: ActivatedRoute, private service: ProductsService) {
-=======
+
 
   addButton: boolean = false;
   amount: number = 0;
 
   constructor(private route: ActivatedRoute, private productsService: ProductsService) {
->>>>>>> b270bf5108966ce4b686e208885e37ce133ca33a
     this.id = this.route.snapshot.paramMap.get("id")
   }
 
@@ -29,13 +27,9 @@ export class ProductsDetailsComponent implements OnInit {
   }
 
   getProduct() {
-<<<<<<< HEAD
     this.loading = true
-    this.service.getProductById(this.id).subscribe(res => {
-      this.loading = false
-=======
     this.productsService.getProductById(this.id).subscribe(res => {
->>>>>>> b270bf5108966ce4b686e208885e37ce133ca33a
+      this.loading = false
       this.data = res
       console.log(this.data)
     })
