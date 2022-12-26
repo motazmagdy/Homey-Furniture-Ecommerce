@@ -1,28 +1,50 @@
+<<<<<<< HEAD
 <!-- <p>products-details works!</p> -->
 <div class="box p-5">
     <div class="row" *ngIf="!loading">
       <div class="col-md-5 col-sm-12">
          <img style="width: 80%;" *ngIf="data.images" src="assets/images/{{data.images[0]}}" alt="logo">
+=======
+<div class="container">
+  <div class="card mb-3 mt-5 border-0" style="max-width: 100%;">
+    <div class="row g-0 d-flex align-items-center">
+      <div class="col-md-4">
+        <img src="http://localhost:3006/uploads/HomeyFurniture_{{data.images[0]}}" *ngIf="data.images"
+          class="img-fluid rounded" style="width: 95%;" alt="logo">
+>>>>>>> b270bf5108966ce4b686e208885e37ce133ca33a
       </div>
-      <div class="col-md-7 col-sm-12">
-        <div class="info">
-          <ul class="list-unstyled lh-lg">
-            <li><strong>Name : </strong>{{data.name}}</li>
-            <li><strong>Category :</strong>{{data.category}}</li>
-            <li><strong>Color :</strong>{{data.color}}</li>
-            <li><strong>Price :</strong>{{data.price}}</li>
-            <li><strong>Dimensions : </strong>{{data.dimensions}}</li>
-            <li><strong>Material : </strong>{{data.material}}</li>
-            <li><strong>Number of units : </strong>{{data.number_of_units}}</li>
-            <li><strong>Number of available : </strong>{{data.number_available}}</li>
-            <li><strong>Delivery within : </strong>{{data.delivery_within}}</li>
-            <li><strong>Made in : </strong>{{data.made_in}}</li>
-          </ul>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title fs-2">{{data.name}}</h5>
+          <p class="card-text fs-6 text-muted fw-light mb-4">{{data.category}}</p>
+          <p class="card-text fs-4 fw-bold mb-5">{{data.price}} EGP</p>
+
+          <div class=" mt-4 mb-3 w-50">
+            <a class="btn btn-primary w-75" *ngIf="!addButton" (click)="addButton= true">Add to Cart</a>
+            <div class="d-flex w-75" *ngIf="addButton">
+              <input type="number" class="form-control w-25 me-2" [(ngModel)]="amount">
+              <button class="btn btn-danger w-75" (click)="addToCart();addButton = false">Add</button>
+            </div>
+          </div>
+
+          <p class="card-text fs-6">More Details</p>
+          <p class="card-text fs-6"><span class="fs-5">Color :</span> {{data.color}}</p>
+          <p class="card-text fs-6"><span class="fs-5">Dimensions :</span> {{data.dimensions}}</p>
+          <p class="card-text fs-6"><span class="fs-5">Material :</span> {{data.material}}</p>
+          <p class="card-text fs-6"><span class="fs-5">Number of units :</span> {{data.number_of_units}}</p>
+          <p class="card-text fs-6"><span class="fs-5">Number of available :</span> {{data.number_available}}</p>
+          <p class="card-text fs-6"><span class="fs-5">Delivery within :</span> {{data.delivery_within}}</p>
+          <p class="card-text fs-6"><span class="fs-5">Made in :</span> {{data.made_in}}</p>
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <div class="text-center w-100" *ngIf="loading">
       <app-spinner></app-spinner>
     </div>
     <!-- <app-spinner *ngIf="loading"></app-spinner> -->
   </div>
+=======
+  </div>
+</div>
+>>>>>>> b270bf5108966ce4b686e208885e37ce133ca33a

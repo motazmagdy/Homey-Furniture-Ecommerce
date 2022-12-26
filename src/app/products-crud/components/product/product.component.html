@@ -1,0 +1,9 @@
+<div style="cursor:pointer;">
+  <!-- <img *ngIf="data" src="assets/images/{{data.images[0]}}" class="card-img-top" style="height: 280px;" alt="..."> -->
+  <img *ngIf="data" src="http://localhost:3006/uploads/HomeyFurniture_{{data.images[0]}}" class="card-img-top"
+    style="height: 280px;" alt="...">
+  <h5 class="card-title mt-4">{{data.name}}</h5>
+  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+    content.</p>
+  <div class="mt-2 fw-bold">{{data.price}} L.E</div>
+</div>
