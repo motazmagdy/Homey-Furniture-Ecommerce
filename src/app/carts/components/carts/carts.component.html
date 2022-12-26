@@ -1,49 +1,79 @@
-<div class="cartBox">
-  <h1 class="text-danger">Shopping Cart</h1>
-  <div class="headCart">
-    <p class="lead">You have <label class="text-danger" *ngIf="cartItems">{{cartItems.length}}</label> in your cart</p>
-    <span (click)="clearCart()">clear shopping cart</span>
+<div class="container mt-4" *ngIf="!loading">
+  <div class="row">
+    <div class="col-10 text-center">
+      <h1 class="text-danger fs-2 fw-bold">Shopping Cart</h1>
+      <div class="headCart">
+        <p class="lead">You have <label class="text-danger" *ngIf="cartItems">{{cartItems.length}}</label> in your cart
+        </p>
+      </div>
+    </div>
+    <div class="col-2 d-flex align-items-center">
+      <span class="px-4 py-3 fs-6" style="border: 2px solid #dc3545;border-radius: 7px;" (click)="clearCart()">Clear
+        All Cart <span class="text-danger fs-5">!</span></span>
+    </div>
   </div>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>price</th>
-        <th style="width: 25%;">Quantity</th>
-        <th>Total</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of cartItems;let index=index">
-        <td><img style="width: 45%;" src="assets/images{{product.images}}" alt=""></td>
-        <td>{{product.name}}</td>
-        <td>{{product.price}} L.E</td>
-        <td>
-          <div class="quantity" *ngIf="product.quantity">
-            <button class="btn btn-dark" (click)="addAmount(index,product.productId , product.quantity)">+</button>
-            <input class="form-control" type="number" (change)="detectChange()" [(ngModel)]="product.quantity" min="1">
-            <button class="btn btn-dark" (click)="minsAmount(index,product.productId , product.quantity)">-</button>
-          </div>
-        </td>
-        <td>{{product.price * product.quantity}} L.E</td>
-        <td>
-          <button class="btn btn-danger" (click)="deleteProduct(index)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th>Total : {{totalBill}} l.E</th>
-        <!-- <th><button class="btn btn-success" (click)="addcart()">Order Now</button></th> -->
-      </tr>
-    </tfoot>
-  </table>
+  <div class="row mt-4">
+    <div class="col">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>price</th>
+            <th style="width: 25%;">Quantity</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of cartItems;let index=index">
+            <td class="p-4">
+              <img class="rounded" style="width: 35%;"
+                src="http://localhost:3006/uploads/HomeyFurniture_{{product.image}}" alt="">
+            </td>
+            <td class="p-4">{{product.name}}</td>
+            <td class="p-4">{{product.price}} L.E</td>
+            <td class="p-4">
+              <div *ngIf="product.quantity">
+                <button class="btn btn-dark mb-1"
+                  (click)="addAmount(index,product.productId , product.quantity)">+</button>
+                <input class="form-control mb-1 w-50" type="number" (change)="detectChange()"
+                  [(ngModel)]="product.quantity" min="1">
+                <button class="btn btn-dark" (click)="minsAmount(index,product.productId , product.quantity)">-</button>
+              </div>
+            </td>
+            <td class="p-4">{{product.price * product.quantity}} L.E</td>
+            <td class="p-4">
+              <button class="btn btn-danger" (click)="deleteProduct(index)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th colspan="2">Total : {{totalBill}} l.E</th>
+          </tr>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th colspan="2">
+              <button class="btn btn-success" style="width: 200px;" (click)="checkout()">Checkout</button>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
 </div>
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+
 <div class="alert alert success" role="alert" *ngIf="success"><strong>Well done!</strong> order is successfully send
 </div>

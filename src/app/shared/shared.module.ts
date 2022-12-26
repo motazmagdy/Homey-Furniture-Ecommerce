@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AppComponent } from '../app.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { SelectComponent } from './components/select/select.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
@@ -18,7 +19,8 @@ import { SelectComponent } from './components/select/select.component';
     ErrorPageComponent,
     HeaderComponent,
     FooterComponent,
-    SelectComponent
+    SelectComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { SelectComponent } from './components/select/select.component';
   exports: [
     HeaderComponent,
     FooterComponent,
-    SelectComponent
+    SelectComponent,
+    SpinnerComponent
   ],
   bootstrap: [AppComponent]
 })
