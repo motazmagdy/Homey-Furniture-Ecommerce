@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CartsService } from '../../services/carts.service';
+import { environment } from 'src/environments/environment';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-carts',
@@ -10,7 +13,7 @@ import { CartsService } from '../../services/carts.service';
 export class CartsComponent implements OnInit {
   products: any
   quantity: any
-  constructor(private service: CartsService) { }
+  constructor(private service: CartsService, private http: HttpClient) { }
   cartProduct: any[] = []
   items: any
   total: any = 0
@@ -29,7 +32,6 @@ export class CartsComponent implements OnInit {
   //   this.cartProduct=JSON.parse(localStorage.getItem("cart")!)
   // }
   getCartProducts() {
-    console.log("hhhh");
     this.service.getAllProductsInCart().subscribe(
       {
         next: (data3: any) => {
@@ -149,4 +151,18 @@ export class CartsComponent implements OnInit {
     }
   }
 
+
+  /**user cart */
+  cart: any = {};
+  checkout(): void {
+    this.http.post(environment.baseApi + 'order/checkout', {
+      items: this.cartItems,
+    }).subscribe(async (res: any) => {
+      let stripe = await loadStripe('pk_test_51MDqJLDqFyEpvR3LR784kOdkUgxLLMvisNt7SSs0DtzUwsjxYg6wnyenhgAVbIlUG40nbEeCBwn4J8GZG1LVBnZy00KVhdBI6h');
+
+      stripe?.redirectToCheckout({
+        sessionId: res.id
+      })
+    })
+  }
 }
