@@ -51,29 +51,17 @@
             </select>
           </td>
           <td>
-            <!-- TODO ==> delete should be in page accessed by user (user auth)  -->
-            <!-- <button class="btn btn-danger me-3" (click)="deleteOrder(order._id)">Delete</button> -->
             <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#exampleModal"
               (click)="viewProductsInOrder(order._id)">Order Details</button>
           </td>
         </tr>
       </tbody>
-      <!-- <tfoot>
-          //checkout
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th><button class="btn btn-success" style="width: 200px;" (click)="checkout()">Pay with
-                stripe</button></th>
-          </tr>
-        </tfoot> -->
     </table>
   </div>
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" style="max-width: 900px;">
+  <div class="modal-dialog h-100" style="max-width: 900px;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
@@ -92,7 +80,8 @@
           </thead>
           <tbody>
             <tr *ngFor="let item of products;let index=index">
-              <td><img src="assets/images/{{item.image}}" alt="" style="width:125px;"></td>
+              <td><img src="http://localhost:3006/uploads/HomeyFurniture_{{item.image}}" alt="" style="width:125px;">
+              </td>
               <td>{{item.name}}</td>
               <td>{{item.price}} L.E</td>
               <td>{{item.quantity}}</td>
@@ -111,10 +100,6 @@
 
         </table>
       </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
     </div>
   </div>
 </div>
