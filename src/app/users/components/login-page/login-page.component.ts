@@ -12,6 +12,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class LoginPageComponent implements OnInit {
   public loginForm!: FormGroup;
   loading:boolean=false
+  userdata:any
 
   constructor(private authenticationService: AuthenticationService , private _router:Router) {}
 
@@ -32,10 +33,17 @@ export class LoginPageComponent implements OnInit {
       this.loginForm!.get('password')!.value)
       .subscribe({
         next: (res:any) => {
+          console.log(res);
           this.loading = false
-          console.log(res),
+          let userInfo = {
+            email : res.user.email,
+            name : res.user.name,
+            id : res.user._id,
+            role : res.roleAuth
+          }
           localStorage.setItem('token',res.token)
-          this._router.navigate(['/products/all']);
+          localStorage.setItem('user',JSON.stringify(userInfo))
+          this._router.navigate(['/products/users/all-products']);
         },
         error: (e) => {
           this.loading = false
@@ -52,5 +60,4 @@ export class LoginPageComponent implements OnInit {
   get EmailField(){
     return this.loginForm!.get('email')!.value
   }
-
 }

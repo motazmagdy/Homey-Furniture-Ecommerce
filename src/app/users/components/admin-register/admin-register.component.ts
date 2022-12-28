@@ -39,8 +39,15 @@ export class AdminRegisterComponent implements OnInit {
         {
           next: (res:any) =>{
             this.loading=false
-            console.log(res),
+            console.log(res)
+            let userInfo = {
+              email : res.user.email,
+              name : res.user.name,
+              id : res.user._id,
+              role : res.roleAuth
+            }
             localStorage.setItem('token',res.token)
+            localStorage.setItem('user',JSON.stringify(userInfo))
             this._router.navigate(['/products/all']);
         },
         error: (e) => {
@@ -63,6 +70,4 @@ export class AdminRegisterComponent implements OnInit {
   get PassLength(){
     return this.registerForm!.get('password')!.value
   }
-
 }
-

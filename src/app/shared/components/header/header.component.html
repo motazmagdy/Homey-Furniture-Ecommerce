@@ -8,23 +8,15 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav d-flex justify-content-around w-100">
         <a class="nav-link" aria-current="page" routerLink="/home" routerLinkActive="active">Home</a>
-        <a class="nav-link" aria-current="page" routerLink="/products/all" routerLinkActive="active">Products</a>
-        <a class="nav-link" aria-current="page" *ngIf="_authservice.isLoggedIn()" routerLink="/users/carts"
-          routerLinkActive="active">Cart</a>
-
-        <a class="nav-link" aria-current="page" routerLink="products/crud" routerLinkActive="active">Products
-          CRUD</a>
-        <a class="nav-link" aria-current="page" routerLink="admins/orders" routerLinkActive="active">Orders</a>
-
-        <a class="nav-link" aria-current="page" *ngIf="!_authservice.isLoggedIn()" routerLink="/users/login"
-          routerLinkActive="active">Login</a>
-        <a class="nav-link" aria-current="page" *ngIf="!_authservice.isLoggedIn()" routerLink="/users/register"
-          routerLinkActive="active">Register</a>
-        <a class="nav-link" aria-current="page" *ngIf="_authservice.isLoggedIn()" routerLink="/users/profile"
-          routerLinkActive="active">Profile</a>
+        <a class="nav-link" aria-current="page" *ngIf="_authservice.isUserLoggedIn()" routerLink="products/users/all-products" routerLinkActive="active">Products</a>
+          <a class="nav-link" aria-current="page" *ngIf="_authservice.isUserLoggedIn()" routerLink="/users/carts" routerLinkActive="active">Cart</a>
+        <a class="nav-link" aria-current="page" *ngIf="_authservice.isAdminLoggedIn()" routerLink="products/crud" routerLinkActive="active">ProductsCRUD</a>
+        <a class="nav-link" aria-current="page" *ngIf="_authservice.isAdminLoggedIn()" routerLink="admins/orders" routerLinkActive="active">Orders</a>
+        <a class="nav-link" aria-current="page" *ngIf="_authservice.isUserLoggedIn()" routerLink="/users/profile" routerLinkActive="active">Profile</a>
+        <a class="nav-link" aria-current="page" *ngIf="!_authservice.isLoggedIn()" routerLink="/users/login" routerLinkActive="active">Login</a>
+        <a class="nav-link" aria-current="page" *ngIf="!_authservice.isLoggedIn()" routerLink="/users/signup" routerLinkActive="active">Register</a>
         <a class="nav-link" aria-current="page" routerLink="/about" routerLinkActive="active">About</a>
-        <a class="nav-link" aria-current="page" *ngIf="_authservice.isLoggedIn()" routerLink="/users/login"
-          routerLinkActive="active" (click)="_authservice.logout()">Logout</a>
+        <a class="nav-link" aria-current="page" *ngIf="_authservice.isLoggedIn()" routerLink="/users/login" routerLinkActive="active" (click)="_authservice.logout()">Logout</a>
       </div>
     </div>
   </div>
