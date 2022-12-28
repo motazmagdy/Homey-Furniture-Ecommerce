@@ -153,17 +153,17 @@ export class AllProductsCRUDComponent implements OnInit {
     })
   }
 
-  onMultipleFilesUpload() {
-    const formData = new FormData()
-    for (let eachFile of this.multipleFiles) {
-      formData.append('files', eachFile)
-    }
+  // onMultipleFilesUpload() {
+  //   const formData = new FormData()
+  //   for (let eachFile of this.multipleFiles) {
+  //     formData.append('files', eachFile)
+  //   }
 
-    this.productsService.uploadFile(formData).subscribe({
-      next: (res: any) => { },
-      error: (err: { message: any }) => { alert(err.message) }
-    })
-  }
+  //   this.productsService.uploadFile(formData).subscribe({
+  //     next: (res: any) => { },
+  //     error: (err: { message: any }) => { alert(err.message) }
+  //   })
+  // }
   //#endregion multiple image upload
 
 

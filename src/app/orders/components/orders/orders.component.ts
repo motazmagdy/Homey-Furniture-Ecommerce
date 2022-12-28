@@ -52,16 +52,6 @@ export class OrdersComponent implements OnInit {
     })
   }
 
-  //TODO --> it should be in page accessed by user (user auth)
-  deleteOrder(orderId: string) {
-    this.orderService.deleteOrder(orderId).subscribe({
-      next: (res: any) => {
-        this.getAllOrders()
-        alert('Order deleted successfully')
-      },
-      error: (err: { message: any }) => { alert(err.message) }
-    })
-  }
 
   viewProductsInOrder(orderId: string) {
     this.products = []
