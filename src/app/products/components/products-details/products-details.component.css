@@ -1,0 +1,18 @@
+/* .carousel-indicators button.thumbnail {
+  width: 100px
+}
+
+.carousel-indicators button.thumbnail:not(.active) {
+  opacity: .7;
+}
+
+.carousel-indicators {
+  position: static;
+}
+
+@media screen and (min-width:992px) {}
+
+.carousel {
+  max-width: 70%;
+  margin: 0 auto;
+} */

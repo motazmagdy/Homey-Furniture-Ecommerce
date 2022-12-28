@@ -5,14 +5,13 @@ import { ProductsService } from '../../services/products.service';
 @Component({
   selector: 'app-products-details',
   templateUrl: './products-details.component.html',
-  styles: [
-  ]
+  styleUrls: ['./products-details.component.css']
 })
 export class ProductsDetailsComponent implements OnInit {
   id: any;
   data: any = {};
 
-  loading : boolean= false
+  loading: boolean = false
 
 
   addButton: boolean = false;
@@ -47,7 +46,7 @@ export class ProductsDetailsComponent implements OnInit {
   addToCart() {
     console.log(this.data);
 
-    let orderData={productId:this.data._id,quantity:this.amount}
+    let orderData = { productId: this.data._id, quantity: this.amount }
 
     this.productsService.addingToCart(orderData).subscribe(
       {
@@ -56,4 +55,13 @@ export class ProductsDetailsComponent implements OnInit {
       }
     )
   }
+
+
+  selectedIndex = 0
+
+  selectImage(index: number) {
+    this.selectedIndex = index
+  }
+
+
 }

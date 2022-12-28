@@ -8,7 +8,7 @@ import { ProductsService } from './services/products.service';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-
+import { NgbModule, NgbCarouselModule, NgbAccordion, NgbPanelHeader } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,9 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    NgbModule,
+    NgbCarouselModule,
   ],
   providers: [
     ProductsService
