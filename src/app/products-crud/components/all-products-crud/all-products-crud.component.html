@@ -93,7 +93,7 @@
               <input type="file" class="form-control d-block w-50" multiple (change)="selectMultipleFiles($event)">
               <!-- <button type="submit" class="form-control d-inline-block btn btn-secondary" style="width: 30%;"
                   (click)="onMultipleFilesUpload()">click to upload</button> -->
-              <img *ngFor="let image of form.value.images" class="rounded mt-2 me-2" style="width: 120px;"
+              <img *ngFor="let image of form.value.images" class="rounded mt-2 me-2" style="width: 120px;height: 120px;"
                 src="http://localhost:3006/uploads/HomeyFurniture_{{image}}" alt="" id="img">
             </div>
           </div>
@@ -174,7 +174,7 @@
               <input type="file" class="form-control d-block w-50" multiple (change)="selectMultipleFiles($event)">
               <!-- <button type="submit" class="form-control d-inline-block btn btn-secondary" style="width: 30%;"
                   (click)="onMultipleFilesUpload()">click to upload</button> -->
-              <img *ngFor="let image of form.value.images" class="rounded mt-2 me-2" style="width: 120px;"
+              <img *ngFor="let image of form.value.images" class="rounded mt-2 me-2" style="width: 120px;height: 120px;"
                 src="http://localhost:3006/uploads/HomeyFurniture_{{image}}" alt="" id="img">
             </div>
           </div>
