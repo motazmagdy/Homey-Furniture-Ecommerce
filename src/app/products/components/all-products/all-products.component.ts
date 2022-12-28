@@ -23,11 +23,15 @@ export class AllProductsComponent implements OnInit {
   cartProduct: any[] = []
   body2: any;
   loading:boolean = false
+  wishList:number[]=[]
+  productIds: number[] = [];
 
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
     this.getAllProducts()
+    // this.loadProducts()
+    this.loadWishlist()
   }
 
   getAllProducts() {
@@ -42,6 +46,13 @@ export class AllProductsComponent implements OnInit {
         alert(err.message) }
     })
 
+  }
+
+  loadWishlist(){
+    this.productsService.getWishlist().subscribe(productIds => {
+      console.log(productIds);
+      this.wishList=productIds
+    })
   }
 
   //#region filter by category
