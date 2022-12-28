@@ -5,3 +5,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* *{
     border: 1px solid green;
 } */
+.bi-heart{
+  color: crimson;
+  cursor: pointer;
+}
+.bi-heart-fill{
+  color: crimson;
+  cursor: pointer;
+}
