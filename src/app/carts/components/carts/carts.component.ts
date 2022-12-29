@@ -30,9 +30,6 @@ export class CartsComponent implements OnInit {
 
   }
 
-  // if ( "cart" in localStorage){
-  //   this.cartProduct=JSON.parse(localStorage.getItem("cart")!)
-  // }
   getCartProducts() {
     this.loading = true
 

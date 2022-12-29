@@ -31,9 +31,16 @@ export class AdminLoginComponent implements OnInit {
       .subscribe({
         next: (res:any) => {
           this.loading=false
-          console.log(res.status),
-          localStorage.setItem('token',res.token),
-          this._router.navigate(['/products/all']);
+          console.log(res)
+          let userInfo = {
+            email : res.admin.email,
+            name : res.admin.name,
+            id : res.admin._id,
+            role : res.roleAuth
+          }
+          localStorage.setItem('token',res.token)
+          localStorage.setItem('user',JSON.stringify(userInfo))
+          this._router.navigate(['/products/crud']);
         },
         error: (e) => {
           this.loading=false

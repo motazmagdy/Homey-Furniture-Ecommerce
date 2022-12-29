@@ -12,9 +12,9 @@ import { ProfileViewComponent } from './users/components/profile-view/profile-vi
 import { AllProductsComponent } from './products/components/all-products/all-products.component';
 import { ProductsDetailsComponent } from './products/components/products-details/products-details.component';
 import { CartsComponent } from './carts/components/carts/carts.component';
-
 import { AllProductsCRUDComponent } from './products-crud/components/all-products-crud/all-products-crud.component';
 import { OrdersComponent } from './orders/components/orders/orders.component';
+import { Role } from './users/_models'
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,12 +26,32 @@ const routes: Routes = [
   { path: 'users/register', component: RegisterPageComponent },
   { path: 'users/profile', component: ProfileViewComponent, canActivate: [HelpersGuard] },
 
-  { path: 'products/crud', component: AllProductsCRUDComponent, canActivate: [HelpersGuard] },
-  { path: 'admins/orders', component: OrdersComponent, canActivate: [HelpersGuard] },
+  {
+      path: 'products/crud', component: AllProductsCRUDComponent,
+      canActivate: [HelpersGuard],
+      data : {roles:[Role.admin]} 
+},
 
-  { path: 'products/all', component: AllProductsComponent, canActivate: [HelpersGuard] },
-  { path: 'products/:id', component: ProductsDetailsComponent, canActivate: [HelpersGuard] },
-  { path: 'users/carts', component: CartsComponent, canActivate: [HelpersGuard] },
+  { path: 'admins/orders', component: OrdersComponent, 
+    canActivate: [HelpersGuard],
+    data : {roles:[Role.admin]}  },
+
+  { path: 'products/admin/all', component: AllProductsComponent, 
+    canActivate: [HelpersGuard],
+    data : {roles:[Role.admin]} },
+
+  { path: 'products/users/all-products', component: AllProductsComponent, 
+    canActivate: [HelpersGuard],
+    data : {roles:[Role.user]} },
+
+  { path: 'products/:id', component: ProductsDetailsComponent, 
+    canActivate: [HelpersGuard],
+    data : {roles:[Role.user]} },
+
+  { path: 'users/carts', component: CartsComponent, 
+    canActivate: [HelpersGuard],
+    data : {roles:[Role.user]} },
+
   { path: '**', component: ErrorPageComponent }
 ];
 

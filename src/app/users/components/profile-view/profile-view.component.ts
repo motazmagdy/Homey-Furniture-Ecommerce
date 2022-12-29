@@ -77,7 +77,9 @@ export class ProfileViewComponent implements OnInit {
             this.loading = false
             console.log(res),
               localStorage.setItem('token', res.token)
-            this._router.navigate(['/products/all']);
+
+            this._router.navigate(['users/profile']);
+
           },
           error: (e) => {
             this.loading = false
