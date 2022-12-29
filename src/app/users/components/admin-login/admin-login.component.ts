@@ -11,7 +11,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class AdminLoginComponent implements OnInit {
   public loginForm!: FormGroup;
   loading:boolean=false
+
   constructor(private authenticationService: AuthenticationService , private _router:Router) {}
+
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required,Validators.email]),
@@ -38,7 +40,7 @@ export class AdminLoginComponent implements OnInit {
           }
           localStorage.setItem('token',res.token)
           localStorage.setItem('user',JSON.stringify(userInfo))
-          this._router.navigate(['products/crud']);
+          this._router.navigate(['/products/crud']);
         },
         error: (e) => {
           this.loading=false
@@ -54,4 +56,5 @@ export class AdminLoginComponent implements OnInit {
   get EmailField(){
     return this.loginForm!.get('email')!.value
   }
+
 }

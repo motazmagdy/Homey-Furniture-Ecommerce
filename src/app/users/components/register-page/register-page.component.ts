@@ -12,6 +12,8 @@ export class RegisterPageComponent implements OnInit {
   public registerForm!: FormGroup;
   loading:boolean=false
   constructor(private authenticationService: AuthenticationService ,private _router:Router ,public myActivated:ActivatedRoute) {
+
+
   }
 
   ngOnInit() {
@@ -49,7 +51,7 @@ export class RegisterPageComponent implements OnInit {
             }
             localStorage.setItem('token',res.token)
             localStorage.setItem('user',JSON.stringify(userInfo))
-            this._router.navigate(['/products/all']);
+            this._router.navigate(['/products/users/all-products']);
         },
         error: (e) =>{
           this.loading=false
@@ -70,4 +72,6 @@ export class RegisterPageComponent implements OnInit {
   get PassLength(){
     return this.registerForm!.get('password')!.value
   }
+
+
 }

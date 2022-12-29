@@ -17,7 +17,7 @@ export class CartsComponent implements OnInit {
   constructor(private service: CartsService, private http: HttpClient) { }
 
   cartProduct: any[] = []
-  items: any
+  cart: any
   total: any = 0
   success: boolean = false
   cartItems: any
@@ -30,27 +30,22 @@ export class CartsComponent implements OnInit {
 
   }
 
-  // if ( "cart" in localStorage){
-  //   this.cartProduct=JSON.parse(localStorage.getItem("cart")!)
-  // }
   getCartProducts() {
     this.loading = true
 
     this.service.getAllProductsInCart().subscribe(
       {
-        next: (data3: any) => {
+        next: (res: any) => {
           this.loading = false
-          console.log(data3)
-          this.items = data3
-          this.cartItems = data3.items
-          console.log(this.cartItems);
-          this.totalBill = data3.bill
-          console.log(this.total);
-
+          this.cart = res
+          if (this.cart) {
+            this.cartItems = res.items
+            this.totalBill = res.bill
+          }
         },
-        error: (err: any) => {
+        error: (err: { message: any }) => {
           this.loading = false
-          console.log(err);
+          alert(err.message);
         }
 
       }
@@ -59,15 +54,10 @@ export class CartsComponent implements OnInit {
   }
 
 
-
-
   addAmount(index: number, productId: any, quantity: any) {
-
     this.loading = true
     quantity = ++this.cartItems[index].quantity
     var updatedQuantity = { productId, quantity }
-    //  console.log(this.cartItems[index].quantity);
-    // console.log(updatedQuantity.quantity);
 
     this.service.modifyOrder(updatedQuantity).subscribe(
       {
@@ -93,8 +83,6 @@ export class CartsComponent implements OnInit {
     this.loading = true
     quantity = --this.cartItems[index].quantity
     var updatedQuantity = { productId, quantity }
-    // console.log(this.cartItems[index].quantity);
-    // console.log(updatedQuantity.quantity);
     this.service.modifyOrder(updatedQuantity).subscribe(
       {
         next: (data: any) => {
@@ -119,7 +107,6 @@ export class CartsComponent implements OnInit {
   }
 
 
-
   deleteProduct(index: number) {
     this.loading = true
     var productId = this.cartItems[index].productId
@@ -138,7 +125,6 @@ export class CartsComponent implements OnInit {
             console.log(data)
             this.totalBill = data.bill
           },
-
           error: (err: any) => {
             this.loading = false
             console.log(err)
@@ -154,24 +140,17 @@ export class CartsComponent implements OnInit {
     this.getCartTotal()
 
     localStorage.setItem("cart", JSON.stringify(this.cartItems))
-
-
   }
 
   getCartTotal() {
     this.total = 0
-    // console.log(this.cartItems);
 
     for (let x in this.cartItems) {
-      // console.log(this.cartItems[x].quantity);
       this.total += this.cartItems[x].price * this.cartItems[x].quantity
-
     }
   }
 
 
-  /**user cart */
-  cart: any = {};
   checkout(): void {
     this.http.post(environment.baseApi + 'order/checkout', {
       items: this.cartItems,
@@ -183,4 +162,5 @@ export class CartsComponent implements OnInit {
       })
     })
   }
+
 }
